@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        background-color: aqua;
+    }
+</style>
+<script>
+    // Activity 1
+
+    round = (...args) => {
+        arr = []
+        args.forEach((element, index) => {
+            arr[index] = Math.round(element);
+        })
+        return arr;
+
+    }
+    console.log(round(1.2, 4.3, 7.7))
+
+
+    //    activity 2
+
+    floor = (...args) => {
+        arr = []
+        args.forEach((element, index) => {
+            arr[index] = Math.floor(element);
+        })
+        return arr;
+    }
+    genericOpertaions = (operation, ...args) => {
+        if (operation === 'round') {
+            return round(...args);
+        }
+        else if (operation === 'abs') {
+            return abs(...args)
+        }
+        else if (operation === 'ceil') {
+            return ceil(...args)
+        }
+        else if (operation === 'floor') {
+            return floor(...args)
+        }
+        else {
+            return "Invalid Operation"
+        }
+    }
+    console.log(genericOpertaions('floor', 1.3, 2.4, 3.6, 4.2, 5.5));
+
+
+    // ******************************Lab task 1************************
+
+    //  Person class
+    function Person(firstName = '', lastName = '', age = 0, gender = '') {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+        this.gender = gender;
+    }
+
+    // Employee class (derived from Person)
+    function Employee(firstName, lastName, age, gender, department = '', designation = '', salary = 0) {
+        Person.call(this, firstName, lastName, age, gender);
+        this.department = department;
+        this.designation = designation;
+        this.salary = salary;
+    }
+
+    //  Student class (derived from Person)
+    function Student(firstName, lastName, age, gender, studentId = '', courses = []) {
+        Person.call(this, firstName, lastName, age, gender);
+        this.studentId = studentId;
+        this.courses = courses;
+    }
+
+    //  Teacher class (derived from Employee)
+
+    function Teacher(firstName, lastName, age, gender, department, designation, salary, subject = '') {
+        Employee.call(this, firstName, lastName, age, gender, department, designation, salary);
+        this.subject = subject;
+    }
+
+    // Staff class (derived from Employee)
+    function Staff(firstName, lastName, age, gender, department, designation, salary, role = '') {
+        Employee.call(this, firstName, lastName, age, gender, department, designation, salary);
+        this.role = role;
+    }
+
+    //  Courses class
+    function Courses(courseName = '', courseCode = '') {
+        this.courseName = courseName;
+        this.courseCode = courseCode;
+    }
+
+    // Create instances of Student, Teacher, and Staff
+    const first_student = new Student('Muhammad', 'Saad', 21, 'Male', 'Sp21-bse-023', ['Math', 'MAD']);
+    const second_student = new Student('Ali', 'Ahmed', 19, 'Male', 'Sp21-bse-019', ['ST', 'English']);
+
+    const teach1 = new Teacher('Muhammad', 'Kamran', 35, 'Male', 'Cs Department', 'Professor', 60000, 'MAD');
+    const teach2 = new Teacher('Faisal', 'shehzad', 40, 'Male', 'Cs Department', 'Associate Professor', 55000, 'ITDS');
+
+    const staff1 = new Staff('Zara', 'khan', 28, 'Female', 'Administration', 'Assistant', 40000, 'Clerk');
+    const staff2 = new Staff('ali', 'ahmed', 30, 'Male', 'Security', 'Security Guard', 35000, 'Guard');
+
+   
+    console.log('Student 1:', first_student);
+    console.log('Student 2:', second_student);
+
+    console.log('Teacher 1:', teach1);
+    console.log('Teacher 2:', teach2);
+
+    console.log('Staff 1:', staff1);
+    console.log('Staff 2:', staff2);
+
+    // *****************************Activity 2*********************************************
+
+    class Employee2 {
+        constructor(name = '', dept = 'general') {
+            this.name = name;
+            this.dept = dept;
+            this.report = [];
+        }
+    }
+
+    class Manager extends Employee2 {
+        constructor(name, dept) {
+            super(name, dept);
+        }
+    }
+
+    class WorkerBee extends Employee2 {
+        constructor(name, dept) {
+            super(name, dept);
+            this.project = [];
+        }
+    }
+
+    class Salesperson extends WorkerBee {
+        constructor(name, dept) {
+            super(name, dept);
+            this.quota = 100;
+            this.dept = 'sales'; 
+        }
+    }
+
+    class Engineer extends WorkerBee {
+        constructor(name, dept) {
+            super(name, dept);
+            this.machine = '';
+            this.dept = 'engineering'; 
+        }
+    }
+
+   
+    const manager = new Manager('Manager Name', 'Management');
+    const salesperson = new Salesperson('Salesperson Name');
+    const engineer = new Engineer('Engineer Name');
+
+    console.log(manager);
+    console.log(salesperson);
+    console.log(engineer);
+
+
+</script>
+
+<body>
+
+    <h1>Lab Task</h1>
+
+</body>
+
+</html>
